@@ -25,35 +25,5 @@
                     for($i = 0 ; $i < count($data) ; $i++){
                         echo "<option value='". $data[$i]['supplier_id'] ."'> ". $data[$i]['supplier_desc'] ." </option>";
                     }
-    echo "          </select>
-                </td>
-            <tr>
-                <td>
-                    ชื่อสินค้า
-                </td>
-                <td>
-                    <input type='text' name='name' placeholder='ชื่อสินค้า'>
-                </td>
-            </tr>
-                    
-            <tr>
-            <td>
-                ราคาซื้อ
-            </td>
-            <td>
-                <input type='text' name='cost' placeholder='ราคาซื้อ'>
-            </td>
-        </tr>
-        <tr>
-        <td>
-            ราคาขาย
-        </td>
-        <td>
-            <input type='text' name='price' placeholder='ราคาขาย'>
-        </td>
-    </tr>
-    </table>
-    <button type='submit' value='submit'>เพิ่ม</button>
-    </form>
-    ";
+    echo " </select>";
 ?>
