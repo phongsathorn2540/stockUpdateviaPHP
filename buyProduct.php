@@ -4,6 +4,10 @@
     $data = $oBj->showSupplier();
 
     echo "
+    <a href='addProduct.php'><button type='button'>เพิ่มสินค้า</button></a>
+    <a href='addSup.php'><button type='button'>เพิ่ม supplier</button></a>
+    <a href='buyProduct.php'><button type='button'>สั่งซื้อสินค้า</button></a>
+    <button type='button'>รับสินค้า</button>
         <h1> สั่งซื้อ Product </h1>
         <br>
         <form action='buyProduct.php' method='post'>
