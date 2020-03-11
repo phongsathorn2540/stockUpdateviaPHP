@@ -30,8 +30,8 @@
         <tr>
             <td> ". $listPo[$i]['buy_id'] ." </td>
             <td> ". $listPo[$i]['supplier_desc'] ." </td>
-            <td> ". $listPo[0]['buy_date'] ." </td>
-            <td> " " </td>
+            <td> ". $listPo[$i]['buy_date'] ." </td>
+            <td>  </td>
             <td> </td>
         </tr>
         ";
