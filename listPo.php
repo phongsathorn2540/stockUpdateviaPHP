@@ -22,21 +22,15 @@
         </tr>
     ";
     for($i = 0 ; $i < count($listPo) ; $i++){
-        $costPo = $oBj->costPo(35);
-        for($ii = 0 ; $ii < count($costPo) ; $ii++){
-            echo "test";
-        }
+        $sumCost = 0;
         echo "
         <tr>
             <td> ". $listPo[$i]['buy_id'] ." </td>
             <td> ". $listPo[$i]['supplier_desc'] ." </td>
             <td> ". $listPo[$i]['buy_date'] ." </td>
-            <td>  </td>
+            <td> ". $sumCost." </td>
             <td> </td>
         </tr>
         ";
     }
-    echo "<pre>";
-    print_r($listPo);
-    echo "</pre>";
 ?>
