@@ -2,7 +2,7 @@
     include('class.php');
     $oBj = new Main;
     $data = $oBj->showSupplier();
-
+    $sup_id = '';
     echo "
     <a href='addProduct.php'><button type='button'>เพิ่มสินค้า</button></a>
     <a href='addSup.php'><button type='button'>เพิ่ม supplier</button></a>
@@ -27,12 +27,13 @@
         $sup_id = $_POST["supplier"];
         $dataProductbyid = $oBj->showBuyproduct($sup_id);
         echo "
-        <form action='buyProduct.php' method='post'>
+        <form action='buyProduct.php' method='get'>
             <tr>
                 <td>
                     วันที่ออก
                 </td>
                 <td>
+                    <input type='text' name='supplier' value='$sup_id' hidden>
                     <input type='date' name='dateofbill' required>
                 </td>
             </tr>
@@ -69,15 +70,19 @@
         </table>
         <button type='submit' value='submit'>สั่งซื้อ</button>
         ";
-        if(isset($_POST['dateofbill'])){
-            $buyid = $oBj->showBuyid(); //last buy id
-            $dateofbill = $_POST['dateofbill'];
-            $dateofpay = $_POST['dateofpay'];
-            echo $oBj->addBuy($sup_id, $dateofbill, $dateofpay);
-            for($ii = 0 ; $ii < count($dataProductbyid) ; $ii++){
-                $prod_amout = $_POST['amount'.$ii];
-                echo $oBj->addBuydesc($buyid, $dataProductbyid[$ii]['prod_id'], $prod_amout);
-            }
+    }
+    if(isset($_GET['dateofbill'])){
+        $sup_id = $_GET["supplier"];
+        $dataProductbyid = $oBj->showBuyproduct($sup_id);
+        $buyid = $oBj->showBuyid(); //last buy id
+        $lastbuy_id = $buyid[0]['max(buy_id)'];
+        $dateofbill = $_GET['dateofbill'];
+        $dateofpay = $_GET['dateofpay'];
+        echo $oBj->addBuy($sup_id, $dateofbill, $dateofpay);
+        for($ii = 0 ; $ii < count($dataProductbyid) ; $ii++){
+            $prod_id = $dataProductbyid[$ii]['prod_id'];
+            $order_amout = $_GET['amount'.$ii];
+            echo $oBj->addBuydesc($lastbuy_id, $prod_id , $order_amout);
         }
     }
 ?>
