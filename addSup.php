@@ -6,10 +6,12 @@
         echo $oBj->addSupplier($name);
     };
     echo "
+    <a href='stockProduct.php'><button type='button'>สต็อกสินค้า</button></a>
     <a href='addProduct.php'><button type='button'>เพิ่มสินค้า</button></a>
     <a href='addSup.php'><button type='button'>เพิ่ม supplier</button></a>
     <a href='buyProduct.php'><button type='button'>สั่งซื้อสินค้า</button></a>
-    <button type='button'>รับสินค้า</button>
+    <a href='listPo.php'><button type='button'>รายการใบสั่งซื้อ</button></a>
+    <a href='getProduct.php'><button type='button'>รับสินค้า</button></a>
         <h1> เพิ่ม supplier </h1>
         <br>
         <form action='addSup.php' method='post'>

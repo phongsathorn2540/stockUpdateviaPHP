@@ -1,9 +1,7 @@
 <?php 
     include('class.php');
     $oBj = new Main;
-    $data = $oBj->showSupplier();
-    $sup_id = '';
-    $listPo = $oBj->listPo();
+    $data = $oBj->stockProduct();
     echo "
     <a href='stockProduct.php'><button type='button'>สต็อกสินค้า</button></a>
     <a href='addProduct.php'><button type='button'>เพิ่มสินค้า</button></a>
@@ -15,22 +13,19 @@
         <hr>
     <table border='0' width='500'>
         <tr>
-            <td>รหัส</td>
-            <td>ชื่อลูกค้า </td>
-            <td>วันที่ออก </td>
-            <td>มูลค่า</td>
-            <td>สถานะ</td>
+            <td>รหัสสินค้า</td>
+            <td>ชื่อสินค้า </td>
+            <td>สาขา</td>
+            <td>จำนวน</td>
         </tr>
     ";
-    for($i = 0 ; $i < count($listPo) ; $i++){
-        $buy_ids = $listPo[$i]['buy_id'];
+    for($i = 0 ; $i < count($data) ; $i++){
         echo "
         <tr>
-            <td> <a href='listPoDetail.php?buyid=". $buy_ids ."'> ". $buy_ids ." </a> </td>
-            <td> ". $listPo[$i]['supplier_desc'] ." </td>
-            <td> ". $listPo[$i]['buy_date'] ." </td>
-            <td> ". $oBj->costPo($buy_ids) ." </td>
-            <td> " . $oBj->getStatusPo($buy_ids) . " </td>
+            <td> ". $data[$i]['prod_id'] ." </td>
+            <td> ". $data[$i]['prod_desc'] ." </td>
+            <td> ". $data[$i]['branch_name'] ." </td>
+            <td> ". $data[$i]['total'] ." </td>
         </tr>
         ";
     }

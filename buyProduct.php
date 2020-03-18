@@ -4,10 +4,12 @@
     $data = $oBj->showSupplier();
     $sup_id = '';
     echo "
+    <a href='stockProduct.php'><button type='button'>สต็อกสินค้า</button></a>
     <a href='addProduct.php'><button type='button'>เพิ่มสินค้า</button></a>
     <a href='addSup.php'><button type='button'>เพิ่ม supplier</button></a>
     <a href='buyProduct.php'><button type='button'>สั่งซื้อสินค้า</button></a>
-    <button type='button'>รับสินค้า</button>
+    <a href='listPo.php'><button type='button'>รายการใบสั่งซื้อ</button></a>
+    <a href='getProduct.php'><button type='button'>รับสินค้า</button></a>
         <h1> สั่งซื้อ Product </h1>
         <br>
         <form action='buyProduct.php' method='post'>
@@ -69,20 +71,20 @@
         echo "
         </table>
         <button type='submit' value='submit'>สั่งซื้อ</button>
+        </form>
         ";
     }
     if(isset($_GET['dateofbill'])){
         $sup_id = $_GET["supplier"];
         $dataProductbyid = $oBj->showBuyproduct($sup_id);
-        $buyid = $oBj->showBuyid(); //last buy id
-        $lastbuy_id = $buyid[0]['max(buy_id)'];
         $dateofbill = $_GET['dateofbill'];
         $dateofpay = $_GET['dateofpay'];
         echo $oBj->addBuy($sup_id, $dateofbill, $dateofpay);
+        $buyid = $oBj->showBuyid(); //last buy id
         for($ii = 0 ; $ii < count($dataProductbyid) ; $ii++){
             $prod_id = $dataProductbyid[$ii]['prod_id'];
             $order_amout = $_GET['amount'.$ii];
-            echo $oBj->addBuydesc($lastbuy_id, $prod_id , $order_amout);
+            echo $oBj->addBuydesc($buyid, $prod_id , $order_amout);
         }
     }
 ?>
