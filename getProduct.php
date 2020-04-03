@@ -32,11 +32,12 @@
         <td> ". $listPoActivate[$i]['buy_date'] ." </td>
         <td> ". $oBj->costPo($buy_ids) ." </td>
         <td>             
-                <a href='getProductDetail.php?buyid=".$buy_ids."'><button type='button'>รับสินค้า</button></a>
 
     ";
     if($oBj->checkRecv($buy_ids) == 1){
         echo "รับสินค้าแล้ว";
+    }else {
+        echo "<a href='getProductDetail.php?buyid=".$buy_ids."'><button type='button'>รับสินค้า</button></a>";
     };
     echo "
         </td>
