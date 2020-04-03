@@ -41,10 +41,22 @@
             }
             return $data;
         }
+        public function getIDprod($prod_desc){
+            $sql = "SELECT prod_id FROM product WHERE prod_desc = '$prod_desc'";
+            $result = $this->db_con()->query($sql);
+            while($row = $result->fetch_assoc()){
+                $data = $row['prod_id'];
+            }
+            return $data;
+        }
         public function addProduct($supplier , $prod_desc , $prod_cost , $prod_price){
-            $sql = "INSERT INTO `product` (`prod_id`, `supplier_id`, `prod_desc`, `prod_cost`, `prod_price`) VALUES (NULL, '$supplier', '$prod_desc', '$prod_cost', '$prod_price');";
+            $sql = "INSERT INTO `product` (`prod_id`, `supplier_id`, `prod_desc`, `prod_cost`, `prod_price`) VALUES (NULL, '$supplier', '$prod_desc', '$prod_cost', '$prod_price')";
             if($this->db_con()->query($sql)){
-                return 'เพิ่มเรียบร้อยแล้ว';
+                $prod_id = $this->getIDprod($prod_desc);
+                $sql2 = "INSERT INTO `product_stock` (`prod_id`, `branch_id`, `total`) VALUES ('$prod_id', '1', '0')";
+                if($this->db_con()->query($sql2)){
+                    return 'เพิ่มเรียบร้อยแล้ว';
+                }
             }else{
                 return 'มีปัญหา';
             }
